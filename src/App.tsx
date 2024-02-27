@@ -1,26 +1,25 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Container, createTheme, ThemeProvider } from '@mui/material';
+import PermissionList from './components/PermissionList';
+import PermissionEdit from './components/PermissionEdit';
 
-function App() {
+const theme = createTheme({
+  // Define your theme options here
+});
+
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Router>
+        <Container>
+          <Routes>
+            <Route path="/" element={<PermissionList />} />
+            <Route path="/permission-edit/" element={<PermissionEdit/>} />
+          </Routes>
+        </Container>
+      </Router>
+    </ThemeProvider>
   );
-}
-
+};
 export default App;
